@@ -80,13 +80,33 @@ function getIdcreate(tagName){
 function getId(id){
 	return document.getElementById(id);
 }
-//获取超级电视下的元素
-// var oSuli = document.getElementsByClassName('suli');
-// var oNoshow = getId('noshow');
-// var oKnow = getId('know');
-// var oBuy = getId('buy');
-// var  len = oSuli.length;
-
+// var oGo = getId('gotop');
+// window.onscroll = function(){
+// 	var oTop = document.documentElement.scrollTop || document.body.scrollTop;
+// 	if(oTop >= 1000){
+// 		oGo.style.display = "block";
+// 	}
+// 	oGo.onclick = function(){
+// 		oTop = 0;
+// 	}
+// }
+// var oGo = getId('gotop');
+// window.onscroll = function(){
+// 	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+// 		if(scrollTop >= 500){
+// 			oGo.style.display = "block";
+// 		}
+// 		if(scrollTop < 500){
+// 			oGo.style.display = "none"
+// 		};	
+// }
+// oGo.onclick = function(){
+// 	if(document.body.scrollTop){
+// 		document.body.scrollTop = 0			
+// 	}else{
+// 		document.documentElement.scrollTop = 0
+// 	}
+// }
 
 
 

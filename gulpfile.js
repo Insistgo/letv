@@ -25,7 +25,35 @@
 			.pipe(gulp.dest('./dist/css'))
 		})
 		gulp.task('default',function(){
-			gulp.watch('./src/js/*.js',['js'])
+			gulp.watch('./src/js/index.js',['js'])
+		})
+		gulp.task('sass1',function(){
+			gulp.src('./src/sass/detail.scss')
+			.pipe(sass())
+			.pipe(cssnano())
+			.pipe(rename({"suffix" : ".min"}))
+			.pipe(gulp.dest('./dist/css'))
+		})
+		gulp.task('sass2',function(){
+			gulp.src('./src/sass/login.scss')
+			.pipe(sass())
+			.pipe(cssnano())
+			.pipe(rename({"suffix" : ".min"}))
+			.pipe(gulp.dest('./dist/css'))
+		})
+		gulp.task('sass3',function(){
+			gulp.src('./src/sass/register.scss')
+			.pipe(sass())
+			.pipe(cssnano())
+			.pipe(rename({"suffix" : ".min"}))
+			.pipe(gulp.dest('./dist/css'))
+		})
+		gulp.task('sass6',function(){
+			gulp.src('./src/sass/shopcart.scss')
+			.pipe(sass())
+			.pipe(cssnano())
+			.pipe(rename({"suffix" : ".min"}))
+			.pipe(gulp.dest('./dist/css'))
 		})
 		gulp.task('default',function(){
 			gulp.watch('./src/sass/*.scss',['sass'])
