@@ -28,7 +28,7 @@ li{
 			font-size: 12px;
 			color: white;
 		}
-		p span{
+		p #home{
 			font-size: 12px;
 			color: white;
 			a{
@@ -36,13 +36,15 @@ li{
 				color: white;
 			}
 		}
-		#rightul{
+		#rightul{	
 			text-align: center;
 			display: flex;
 			li{
 				font-size: 12px;
 				margin-right: 10px;
 				width: 65px;
+				height:32px ;
+				position: relative;
 				a{
 					color: white;
 					display: inline-block;
@@ -53,14 +55,52 @@ li{
 				}
 				
 			}
-			li .navspan{
-				display: none;
+			#one{
+				#tv{
+					background: black;
+					display: none;
+					position: absolute;
+					z-index: 10;
+					line-height: 32px;
+					width: 65px;
+					height:32px ;
+					a{
+						color:white;
+						text-align: center;
+					}
+				}
 			}
-			li>.navul{
-				display: none;
+			#two{
+				#navul{
+					display: none;
+					position: absolute;
+					z-index: 10;
+					background: black;
+					li{
+						
+						text-align: center;
+						line-height: 32px;
+						a{
+							color:white;
+						}
+					}
+				}
 			}
-			li:hover ul{
-				display: block;
+			#thr{
+				#thro{
+					display: none;
+					position: absolute;
+					z-index: 10;
+					background: black;
+					color: white;
+				}
+				#thrt{
+					display: none;
+					position: absolute;
+					z-index: 10;
+					background: black;
+					color: white;
+				}
 			}
 		}
 	}
@@ -112,9 +152,6 @@ li{
 			}
 		}
 	}
-}
-.blank{
-	height: 40px;
 }
 .slideshow{
 	height: 420px;
@@ -423,6 +460,15 @@ li{
 				.suli:nth-child(7){
 					margin-right: 0;
 				}
+				.suli:hover #noshow{
+					display: none;
+				}
+				li:hover #buy{
+					bottom: 40px;
+				}
+				li:hover #know{
+					bottom: 40px;
+				}
 			}
 		}
 	}
@@ -516,6 +562,12 @@ li{
 							font-size: 14px;
 						}
 					}
+					li:hover #stash{
+						display: none;
+					}
+					li:hover #atbuy{
+						bottom: 20px;
+					}
 				}
 			}
 		}
@@ -567,7 +619,7 @@ li{
 				height: 620px;
 				display: flex;
 				flex-wrap: wrap;
-				#leli{
+				li{
 					width: 228px;
 					height: 298px;
 					text-align: center;
@@ -576,6 +628,7 @@ li{
 					background: white;
 					overflow: hidden;
 					position: relative;
+					
 					img{
 						width: 160px;
 						height: 160px;
@@ -604,6 +657,7 @@ li{
 						height: 32px;
 						background: red;
 						position: absolute;
+						line-height: 32px;
 						left: 70px;
 						bottom: -32px;
 						font-size: 14px;
@@ -611,6 +665,12 @@ li{
 						border: 0;
 						border-radius: 5px;
 					}
+				}
+				li:hover #hidden{
+					display: none;
+				}
+				li:hover #shoping{
+					bottom: 30px;
 				}
 			}
 		}

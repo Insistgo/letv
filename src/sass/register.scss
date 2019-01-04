@@ -14,7 +14,7 @@ a:hover{
 li{
 	list-style: none;
 }
-#lgn,#pass,#changeimg{
+#uname,#pwd,#changeimg{
 	display : block;
 	height: 40px;
 	width: 412px;
@@ -34,14 +34,13 @@ li{
 	}
 	ul{
 		display: flex;
-		height: 15px;
+		height: 18px;
 		margin-top: 60px;
 		li{
 			text-align: center;
 			width: 110px;
-			
+			line-height: 18px;
 			a{
-				line-height: 15px;
 				font-size: 12px;
 				color: #b6b6b6;
 			}
@@ -85,8 +84,16 @@ li{
 				}
 			}
 		}
-		#lgn{
+		#uname{
 			margin-top: 28px;
+		}
+		#un{
+			font-size: 12px;
+			color:  #419ce3;
+		}
+		#pass{
+			font-size: 12px;
+			color:  #419ce3;
 		}
 		#incode{
 			height: 40px;
@@ -115,7 +122,7 @@ li{
 				display: inline-block;
 			}
 		}
-		#link{
+		#registor{
 			height: 40px;
 			width: 427px;
 			border: 0;
@@ -123,6 +130,9 @@ li{
 			font-size: 17px;
 			color: white;
 			margin-bottom: 86px;
+			display: block;
+			text-align: center;
+			line-height:40px;
 		}
 	}
 }

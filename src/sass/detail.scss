@@ -15,7 +15,6 @@ a:hover{
 li{
 	list-style: none;
 }
-body{height: 2500px;}
 .nav{
 	width: 100%;
 	height: 32px;
@@ -45,11 +44,58 @@ body{height: 2500px;}
 				}
 				
 			}
-			li .navspan{
-				display: none;
+			#home{
+				a{
+					color: white;
+					font-size: 13px;
+				}
+				}
+			#one{
+				#tv{
+					background: black;
+					display: none;
+					position: absolute;
+					z-index: 10;
+					line-height: 32px;
+					width: 65px;
+					height:32px ;
+					a{
+						color:white;
+						text-align: center;
+					}
+				}
 			}
-			li>.navul{
-				display: none;
+			#two{
+				#navul{
+					display: none;
+					position: absolute;
+					z-index: 10;
+					background: black;
+					li{
+						
+						text-align: center;
+						line-height: 32px;
+						a{
+							color:white;
+						}
+					}
+				}
+			}
+			#thr{
+				#thro{
+					display: none;
+					position: absolute;
+					z-index: 10;
+					background: black;
+					color: white;
+				}
+				#thrt{
+					display: none;
+					position: absolute;
+					z-index: 10;
+					background: black;
+					color: white;
+				}
 			}
 		}
 	}
@@ -59,6 +105,12 @@ body{height: 2500px;}
 	.nbbox{
 		margin:0 25px;
 		display:flex;
+		a{
+			#logo{
+			width: 330px;
+			height: 120px;
+			}
+		}
 		.topsou{
 			width: 660px;
 			height: 64px;
@@ -161,10 +213,76 @@ body{height: 2500px;}
 	display: flex;
 	margin: 0 25px 40px;
 	justify-content: space-between;
-	.left{
-		width:450px;
-		height: 568px;
-		background: red;
+	#left{
+		width: 440px;
+		margin: 0px 5px;
+		height: 545px;
+		overflow: hidden;
+		#top{
+			position: relative;
+			height: 450px;
+			li{
+				position: absolute;
+				top: 0;
+				left: 0;
+				img{
+					width: 450px;
+					height:450px;
+				}
+			}
+		}
+		#bottom{
+			position: relative;
+			height: 74px;
+			margin-top:10px;
+			#btn_l{
+				position: absolute;
+				background: white;
+				font-size: 40px;
+				//border: 1px solid #737373;
+				text-align: center;
+				text-decoration: none;
+				line-height: 74px;
+				color: #737373;
+				height: 74px;
+				width: 25px;
+				left: 0px;
+				top: 0px;
+				z-index: 1001;
+				opacity: 0.5;
+				filter: alpha(opacity=50);
+			}
+			#btn_r{
+				position: absolute;
+				background: white;
+				//border: 1px solid #737373;
+				font-size: 40px;
+				text-align: center;
+				text-decoration: none;
+				line-height: 74px;
+				color: #737373;
+				height: 74px;
+				width: 25px;
+				right:0px;
+				top: 0px;
+				z-index: 1001;
+				opacity: 0.5;
+				filter: alpha(opacity=50);
+			}
+			#small_ul{
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: flex;
+				li{
+					margin: 5px;
+					img{
+						height: 60px;
+						width: 75px;
+					}
+				}
+			}
+		}	
 	}
 	.right{
 		width: 720px;
@@ -310,12 +428,17 @@ body{height: 2500px;}
 		}
 	}
 }
-.tabs{
+#tabs{
 	border-top: 1px solid #ececec;
 	border-bottom: 1px solid #ececec;
+	position: absolute;
+	top: 868px;
+	width: 100%;
+	background: white;
+	display: flex;
+	justify-content: space-between;
 	ul{
 		display:flex;
-		margin-left: 50px;
 		li{
 			width: 150px;
 			height: 50px;
@@ -327,9 +450,20 @@ body{height: 2500px;}
 			}
 		}
 	}
+	#xilink{
+		width: 150px;
+		height: 50px;
+		background: red;
+		font-size: 17px;
+		line-height: 50px;
+		text-align: center;
+		color: white;
+		display: none;
+	}
 }
 .shinetop{
-	margin: 25px 25px;
+	padding:0px 25px;
+	margin-top:80px ;
 	.price{
 		height: 62px;
 		border: 1px solid #dfdfdf;

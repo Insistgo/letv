@@ -3,8 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>乐视商城 详情页</title>
-	</head>
+	
 	<link rel="stylesheet" href="../../dist/css/detail.min.css">
+	<script src="cookie.js" type="text/javascript" charset="utf-8"></script>
+	<script src="jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 	<style>
 		#logo{
 			width:330px;
@@ -12,35 +14,166 @@
 			margin-right: 40px;
 		}
 	</style>
+	<script src="../js/sport.js"></script>
+	<script>
+		window.onload = function(){
+			//获取页面元素对象
+			//获取大盒子
+			var oBigBox = getId('box');
+			//获取top
+			var oTop = getId('top');
+			//获取左按钮
+			var oLtbtn = getId('btn_l');
+			// 获取右按钮
+			var oRtbtn = getId('btn_r');
+			// 获取所有大图
+			var oBigPic = oTop.getElementsByTagName('li');
+			// 获取下部分
+			var oBottom = getId('bottom');
+			// 获取小图所在ul
+			var oSmallUl = getId('small_ul');
+			// 获取所有小图
+			var oSmallPic = oBottom.getElementsByTagName('li');
+			//设置小图ul的宽度(单张小图的宽 * 所有的小图的长度)
+			oSmallUl.style.width = oSmallPic[0].offsetWidth * oSmallPic.length + 'px';
+			// 声明一个控制当前图片的下标 
+			var indexA = 0;
+			//声明一个zIndex的变量
+			var  zIndex = 1;
+			//声明一个timer变量
+			var timer = null;
+			slider();
+			//左按钮点击事件
+			oLtbtn.onclick = function(){
+				indexA --;
+				if(indexA == -1){
+					indexA = oBigPic.length - 1;
+				}
+				slider();
+			}
+			//右按钮点击事件
+			oRtbtn.onclick = function(){
+				indexA ++;
+				if(indexA == oBigPic.length){
+					indexA = 0;
+				}
+				slider();
+			}
+			// 给所有小图添加事件
+			for(var i = 0,len = oSmallPic.length;i < len ;i ++){
+				//记录当前下标 
+				oSmallPic[i].index = i;
+				
+				//移入事件
+				
+				oSmallPic[i].onmouseenter = function(){
+					sport(this,{opacity : 100});
+				}
+				//移出事件
+				oSmallPic[i].onmouseleave = function(){
+					if(this.index != indexA){
+						sport(this,{opacity : 50});
+					}
+				}
+				//点击事件
+				oSmallPic[i].onclick = function(){
+					indexA = this.index;
+					slider();
+				}
+			}
+			
+			// 设置图片轮播
+			function slider(){
+				//大图轮播
+				oBigPic[indexA].style.zIndex = ++ zIndex;
+				//小图轮播
+				if(indexA === 0){
+					sport(oSmallUl,{left : 0});
+				}else if(indexA === 2){
+					sport(oSmallUl,{left :- oSmallPic[0].offsetWidth});
+				}else if(indexA === 1){
+						sport(oSmallUl,{left :  0});
+				}else if(indexA === 4){
+						sport(oSmallUl,{left :- oSmallPic[0].offsetWidth});
+				}
+				//初始化小图透明度
+				//所有小图50
+				for(var j = 0,len = oSmallPic.length;j < len;j ++){
+					sport(oSmallPic[j],{opacity : 50});
+				}
+				//当前小图100
+				sport(oSmallPic[indexA],{opacity : 100});
+			}
+		}
+		function getId(id){
+			return document.getElementById(id);
+		}
+	</script>
+	</head>
 	<body>
 		<div class="nav">
 			<div class = "navbox">
 				<p>
 				</p>
 				<ul id = "rightul">
-					<li><a href="">个人中心</a></li>
-					<li><a href="">合作渠道</a>
-						<p class = "navspan"><a href="#">电视官网</a></p>
+					<span id = "home">
+						<a href="login.html">登陆</a> | <a href="register.html">注册</a>
+					</span>
+					<script>
+						//创建cookie
+						var cookieStr = getCookie('loginUser') ? getCookie('loginUser') : '';
+						//获取页面信息
+						var oSpan = document.getElementById("home");
+						if(cookieStr){
+							oSpan.innerHTML = '欢迎你：' + cookieStr + ' <a href="javascript:;">注销</a>';
+							var oA = oSpan.getElementsByTagName('a')[0];
+							oA.onclick = function(){
+								removeCookie('loginUser');
+									oSpan.innerHTML = '<span><a href="login.html">登录 | </a> <a href="registor.html">注册</a>';
+							}
+						}else{
+							oSpan.innerHTML = '<span><a href="login.html">登录</a> <a href="registor.html">注册</a>';
+						}
+					</script>
+					<li><a href="#">个人中心</a></li>
+					<li id="one"><a href="#">合作渠道</a>
+						<p id="tv"><a href="#" >电视官网</a></p>
 					</li>
-					<li><a href="">帮助中心</a>
-						<ul calss = "navul">
-							<li><a href="">配送安装</a></li>
-							<li><a href="">售后服务</a></li>
-							<li><a href="">资费标准</a></li>
-							<li><a href="">联系客服</a></li>
+					<li id="two"><a href="">帮助中心</a>
+						<ul id = "navul">
+							<li><a href="#">配送安装</a></li>
+							<li><a href="#">售后服务</a></li>
+							<li><a href="#">资费标准</a></li>
+							<li><a href="#">联系客服</a></li>
 						</ul>
 					</li>
-					<li><a href="">手机版</a>
-						<span class = "navspan"><a href="">扫码下载APP</a></span><span class = "navspan">
-						<a href="">扫码关注官方商城</a></span>
+					<li id="thr"><a href="#">手机版</a>
+						<a href="#" id = "thro">扫码下载APP</a>
+						<a href="#" id="thrt">扫码关注官方商城</a>
 					</li>
 				</ul>
 			</div>
 		</div>
+		<script>
+				$("#one").hover(function(){
+					$("#tv").css({"display" : "block"});
+				},function(){
+					$("#tv").css({"display" : "none"});
+				})
+				$("#two").hover(function(){
+					$("#navul").css({"display" : "block"});
+				},function(){
+					$("#navul").css({"display" : "none"});
+				})
+				$("#thr").hover(function(){
+					$("#thro,#thrt").css({"display" : "block"});
+				},function(){
+					$("#thro,#thrt").css({"display" : "none"});
+				})
+			</script>
 		<div class = "navbottom">
 			<div class = "nbbox">
-				<!-- <a href="#"><img src="../img/datail/logo.jpg" id = "logo" ></a> -->
-				<div id = "logo"></div>
+				<a href="index.html"><img src="../img/detail/logo.jpg" id = "logo" ></a>
 				<div class="topsou">
 					<input type="text" id="left"/>
 					<input type="button" id="right" value="搜索" />
@@ -79,8 +212,27 @@
 			</ul>
 		</div>
 		<div class="linkdetail">
-			<div class="left">
-				
+			<div id="left">
+				<ul id="top">
+					<li style="z-index: 1 ";><img src="../img/detail/01.jpg" /></li>
+					<li><img src="../img/detail/02.jpg"/></li>
+					<li><img src="../img/detail/03.jpg"/></li>
+					<li><img src="../img/detail/04.jpg"/></li>
+					<li><img src="../img/detail/05.jpg"/></li>
+					<li><img src="../img/detail/06.jpg"/></li>
+				</ul>
+				<div id="bottom">
+					<a href="javascript:;" id="btn_l">&lt;</a>
+					<a href="javascript:;" id="btn_r">&gt;</a>
+					<ul id="small_ul">
+						<li><img src="../img/detail/01.jpg"/></li>
+						<li><img src="../img/detail/02.jpg"/></li>
+						<li><img src="../img/detail/03.jpg"/></li>
+						<li><img src="../img/detail/04.jpg"/></li>
+						<li><img src="../img/detail/05.jpg"/></li>
+						<li><img src="../img/detail/06.jpg"/></li>
+					</ul>
+				</div>
 			</div>
 			<div class="right">
 				<div class="title">
@@ -117,7 +269,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="tabs">
+		<div id="tabs">
 			<ul>
 				<li><a href="#">商品介绍</a></li>
 				<li><a href="#">参数规格</a></li>
@@ -125,6 +277,7 @@
 				<li><a href="#">售后服务</a></li>
 				<li><a href="#">帮助中心</a></li>
 			</ul>
+			<a href="shopcart.html" id="xilink">加入购物车</a>
 		</div>
 		<div class="shinetop">
 			<img src="../img/detail/100_014.jpg" >
@@ -214,6 +367,8 @@
 				return document.getElementById(id);
 			}
 			var oGo = getId('gotop');
+			var oTab = getId('tabs');
+			var oXilink = getId('xilink')
 			window.onscroll = function(){
 				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
 					if(scrollTop >= 500){
@@ -221,7 +376,16 @@
 					}
 					if(scrollTop < 500){
 						oGo.style.display = "none"
-					};	
+					}
+					if(scrollTop >= 868){
+						oTab.style.position = "fixed";
+						oTab.style.top = 0;
+						oXilink.style.display = "block";
+					}else{
+						oTab.style.position = "absolute";
+						oTab.style.top = 868 + 'px';
+						oXilink.style.display = "none";
+					}
 			}
 			oGo.onclick = function(){
 				if(document.body.scrollTop){
@@ -230,9 +394,6 @@
 					document.documentElement.scrollTop = 0
 				}
 			}
-		</script>
-	
-	
-	
+		</script
 	</body>
 </html>

@@ -17,6 +17,26 @@
 			.pipe(rename('index.min.js'))
 			.pipe(gulp.dest('./dist/js'))
 		})
+		gulp.task('login',function(){
+			gulp.src('./src/js/login.js')
+			.pipe(babel({
+				'presets': ['@babel/env']	
+			}))
+			//.pipe(concat())
+			.pipe(uglify())
+			.pipe(rename('login.min.js'))
+			.pipe(gulp.dest('./dist/js'))
+		})
+		gulp.task('reg',function(){
+			gulp.src('./src/js/register.js')
+			.pipe(babel({
+				'presets': ['@babel/env']	
+			}))
+			//.pipe(concat())
+			.pipe(uglify())
+			.pipe(rename('redister.min.js'))
+			.pipe(gulp.dest('./dist/js'))
+		})
 		gulp.task('sass',function(){
 			gulp.src('./src/sass/index.scss')
 			.pipe(sass())

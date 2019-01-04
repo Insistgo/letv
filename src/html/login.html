@@ -4,6 +4,8 @@
 		<meta charset="utf-8">
 		<title>登录页</title>
 		<link rel="stylesheet" href="../../dist/css/login.min.css">
+		<script src="cookie.js"></script>
+		<script src="jquery-1.11.3.js"></script>
 	</head>
 	<body>
 		<div class="nav">
@@ -26,7 +28,7 @@
 					<input type="password" id = "pass" placeholder="密码">
 					<p><span><input type="checkbox" />记住登录状态</span><a href="#">重置密码</a></p>
 					<button id = "link">登录</button>
-					<div class="footer">从这里出发，开启乐视新世界<a href="#">&nbsp;立即注册</a></div>
+					<div class="footer">从这里出发，开启乐视新世界<a href="register.html">&nbsp;立即注册</a></div>
 					<fieldset>
 						<legend>其他方式登录</legend>
 						
@@ -34,5 +36,33 @@
 				</form>
 			</div>
 		</div>
+		<script>
+			function getId(id){
+				return document.getElementById(id)
+			}
+			//获取账号密码输入框
+			var oLgn = getId("lgn");
+			var oPass = getId("pass");
+			//获取登录与跳转注册标签
+			var oLink = getId("link")
+			//给登录按钮添加点击事件
+			oLink.onclick = function(){
+				//获取账号和密码框的内容
+				var lgn = oLgn.value;
+				var pass = oPass.value;
+				//创建cookie
+				var cookieStr = getCookie('registorUser') ? getCookie('registorUser') : '';
+				var obj = convertCookieStrToObj(cookieStr);
+				//判断账号和密码是否匹配
+				if(obj[lgn] == pass){
+					alert('登录成功！');
+					location.href = 'index.html';
+					//在本地创建cookie并储存账号密码信息
+					createCookie('loginUser',lgn,7);
+				}else{
+					alert('用户名与密码不匹配！');
+				}
+			}
+		</script>
 	</body>
 </html>

@@ -4,6 +4,8 @@
 		<meta charset="utf-8">
 		<title>注册页</title>
 		<link rel="stylesheet" href="../../dist/css/register.min.css">
+		<script src="cookie.js"></script>
+		<script src="jquery-1.11.3.js"></script>
 	</head>
 	<body>
 		<div class="nav">
@@ -20,17 +22,88 @@
 				<form>
 					<div class="title">
 						<h3>注册</h3>
-						<span><a href="#">立即登录</a></span>
+						<span><a href="login.html">立即登录</a></span>
 					</div>
-					<input type="text" id = "lgn" placeholder="手机号">
-					<input type="password" id = "pass" placeholder="密码">
+					<input type="text" id = "uname" placeholder="手机号">
+					<span id="un"></span>
+					<input type="password" id = "pwd" placeholder="密码">
+					<span id="pass"></span>
 					<input type="text" id = "changeimg" placeholder="输入验证码,点击图片更换">
 					<input type="text" id = "incode" placeholder="请输入6位验证码">
 					<a href="#" id="getcode">获取验证码</a>
 					<p><input type="checkbox" />我已阅读并同意<a href="#">乐视用户协议</a></p>
-					<a href="#"><button id = "link">注册</button></a>
+					<a href="javascript:;" id = "registor">注册</a>
 				</form>
 			</div>
 		</div>
+		<script>
+			//获取输入的账号密码信息
+			function getId(id){
+				return document.getElementById(id)
+			}
+			var oUname = getId("uname");
+			var oPwd = getId("pwd");
+			//获取注册按钮
+			var oReg = getId("registor");
+			//注册账号提示信息
+			var oSpanUn = getId("un");
+			//注册密码提示信息
+			var oSpanPwd = getId("pass");
+			//设置开关
+			var arr = [false,false];
+			//给注册账号框添加失焦事件(正则判断是否符合注册要求)
+			oUname.onblur = function(){
+				var uname = oUname.value;
+				var re = /^1[34578]\d{9}$/;
+				if(!re.test(uname)){
+					oSpanUn.innerHTML = '请输入正确的手机号！';
+					oSpanUn.style.color = 'red';
+					arr[0] = false;
+				}else{
+					oSpanUn.style.display = "none"
+					arr[0] = true;
+				}
+			}
+			//给注册密码添加失焦事件(正则判断是否符合要求)
+			oPwd.onblur = function(){
+				var pwd = oPwd.value;
+				var re = /^\w{6,12}$/;
+				if(!re.test(pwd)){
+					oSpanPwd.innerHTML = '密码不符合规则!';
+					oSpanPwd.style.color = 'red';
+					arr[1] = false;
+				}else{
+					oSpanPwd.style.display = "none"
+					arr[1] = true;
+				}
+			}
+			//给注册按钮添加点击事件
+			oReg.onclick = function(){
+				var uname = oUname.value;
+				var pwd = oPwd.value;
+				if(!uname){
+					alert('用户名不能为空！');
+					return;
+				}
+				if(arr.indexOf(false) != -1){
+					alert('请正确填写信息！');
+					return;
+				}
+				var cookieStr = getCookie('registorUser') ? getCookie('registorUser') : '';
+				var cookieObj = convertCookieStrToObj(cookieStr);
+				if(uname in cookieObj){
+					alert('用户名已存在！');
+					return;
+				}else{
+					cookieObj[uname] = pwd;
+					cookieStr = convertObjToCookieStr(cookieObj);
+					createCookie('registorUser',cookieStr,7);
+					alert('注册成功！');
+					// 成功后，跳转到登录页面
+					location.href = 'login.html';
+				}
+			}
+			
+		</script>
 	</body>
 </html>

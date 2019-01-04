@@ -5,6 +5,7 @@
 		<title>【乐视商城】首页</title>
 		<link rel="stylesheet" href="../../dist/css/index.min.css">
 		<script src = "jquery-1.11.3.js"></script>
+		<script src="cookie.js"></script>
 		<script src = "../../dist/js/index.min.js"></script>
 	</head>
 	<body>
@@ -12,30 +13,63 @@
 			<div class = "navbox">
 				<p><a href="#">商城首页</a>
 					<a href="#">乐视视频</a>
-					<span>
+					<span id = "home">
 						<a href="login.html">登陆</a> | <a href="register.html">注册</a>
 					</span>
 				</p>
+				<script>
+					//创建cookie
+					var cookieStr = getCookie('loginUser') ? getCookie('loginUser') : '';
+					//获取页面信息
+					var oSpan = document.getElementById("home");
+					if(cookieStr){
+						oSpan.innerHTML = '欢迎你：' + cookieStr + ' <a href="javascript:;">注销</a>'
+						var oA = oSpan.getElementsByTagName('a')[0];
+						oA.onclick = function(){
+							removeCookie('loginUser');
+								oSpan.innerHTML = '<span><a href="login.html">登录 | </a> <a href="registor.html">注册</a>';
+						}
+					}else{
+						oSpan.innerHTML = '<span><a href="login.html">登录</a> <a href="registor.html">注册</a>';
+					}
+				</script>
 				<ul id = "rightul">
 					<li><a href="#">个人中心</a></li>
-					<li><a href="#">合作渠道</a>
-						<p class = "navspan"><a href="#">电视官网</a></p>
+					<li id="one"><a href="#">合作渠道</a>
+						<p id="tv"><a href="#" >电视官网</a></p>
 					</li>
-					<li><a href="">帮助中心</a>
-						<ul calss = "navul">
+					<li id="two"><a href="">帮助中心</a>
+						<ul id = "navul">
 							<li><a href="#">配送安装</a></li>
 							<li><a href="#">售后服务</a></li>
 							<li><a href="#">资费标准</a></li>
 							<li><a href="#">联系客服</a></li>
 						</ul>
 					</li>
-					<li><a href="#">手机版</a>
-						<span class = "navspan"><a href="#">扫码下载APP</a></span><span class = "navspan">
-						<a href="#">扫码关注官方商城</a></span>
+					<li id="thr"><a href="#">手机版</a>
+						<a href="#" id = "thro">扫码下载APP</a></span>
+						<a href="#" id="thrt">扫码关注官方商城</a></span>
 					</li>
 				</ul>
 			</div>
 		</div>
+		<script>
+				$("#one").hover(function(){
+					$("#tv").css({"display" : "block"});
+				},function(){
+					$("#tv").css({"display" : "none"});
+				})
+				$("#two").hover(function(){
+					$("#navul").css({"display" : "block"});
+				},function(){
+					$("#navul").css({"display" : "none"});
+				})
+				$("#thr").hover(function(){
+					$("#thro,#thrt").css({"display" : "block"});
+				},function(){
+					$("#thro,#thrt").css({"display" : "none"});
+				})
+			</script>
 		<div class = "navbottom">
 			<div class = "nbbox">
 				<a href="#"><img src="../img/index/logo.jpg" id = "logo" ></a>
@@ -50,9 +84,6 @@
 				</div>
 				<button type="button"><a href="shopcart.html"><img src="../img/index/gouwu.jpg" id = "shop"></a></button>
 			</div>
-		</div>
-		<div class="biank">
-			
 		</div>
 		<div class="slideshow">
 			<ul class="menu">
@@ -114,13 +145,13 @@
 							<a href="#"><img src="../img/index/1545377140852.jpg" ></a>
 						</li>
 						<li class= "suli">
-							<a href="#">
+							<a href="detail.html">
 								<div>
 									<span class = "one">圣诞价</span>
 									<span class = "two">限时钜惠</span>
 								</div>
 								<img src="../img/index/1545377369565.jpg"  >
-								<h4>zero65</h4>
+								<h4>X55L</h4>
 								<p>通体超薄零距设计 | 8单元声阵直达</p>
 								<h3 id = "noshow">￥7499<span  style=" text-decoration:line-through">￥7999</span></h3>
 								<a href="#" id="know">了解产品</a><a href="#" id="buy">立即购买</a>
@@ -160,7 +191,7 @@
 									<span class = "three">直降600</span>
 								</div>
 								<img src="../img/index/1544088909317.jpg"  >
-								<h4>X55L</h4>
+								<h4>zero65</h4>
 								<p>Master四核处理器 | 4D HDR超高清</p>
 								<h3 id = "noshow">￥2799<span  style=" text-decoration:line-through">￥3799</span></h3>
 								<a href="#" id="know">了解产品</a><a href="#" id="buy">立即购买</a>
@@ -311,7 +342,7 @@
 						<li><a href="#"><img src="../img/index/1545033374857.jpg" ></a></li>
 					</ul>
 					<ul class = "lebright">
-						<li id = "leli">
+						<li class = "leli">
 							<a href="#">
 								<img src="../img/index/1545036103368.jpg">
 								<h4>DURALEX多莱斯进口餐具14套件</h4>
@@ -320,7 +351,7 @@
 								<a href="#" id = "shoping">立即购买</a>
 							</a>
 						</li>
-						<li id = "leli">
+						<li class = "leli">
 							<a href="#">
 								<img src="../img/index/1545036438995.jpg">
 								<h4>卡鲁智能早教机+翻翻乐16件套</h4>
@@ -329,7 +360,7 @@
 								<a href="#" id = "shoping">立即购买</a>
 							</a>
 						</li>
-						<li id = "leli">
+						<li class = "leli">
 							<a href="#">
 								<img src="../img/index/1545036618460.jpg">
 								<h4>先锋 智能移动地暖 取暖器</h4>
@@ -338,7 +369,7 @@
 								<a href="#" id = "shoping">立即购买</a>
 							</a>
 						</li>
-						<li id = "leli">
+						<li class= "leli">
 							<a href="#">
 								<img src="../img/index/1545037445274.jpg">
 								<h4>四大徽茶套组180g</h4>
@@ -347,7 +378,7 @@
 								<a href="#" id = "shoping">立即购买</a>
 							</a>
 						</li>
-						<li id = "leli">
+						<li class = "leli">
 							<a href="#">
 								<img src="../img/index/1545037800616.jpg">
 								<h4>方家铺子五星枸杞250g×2袋</h4>
@@ -356,7 +387,7 @@
 								<a href="#" id = "shoping">立即购买</a>
 							</a>
 						</li>
-						<li id = "leli">
+						<li class = "leli">
 							<a href="#">
 								<img src="../img/index/1545037587957.jpg">
 								<h4>秋冬必备防雾霾防尘口罩</h4>
@@ -365,7 +396,7 @@
 								<a href="#" id = "shoping">立即购买</a>
 							</a>
 						</li>
-						<li id = "leli">
+						<li class = "leli">
 							<a href="#">
 								<img src="../img/index/1545037704736.jpg">
 								<h4>意彩芒果果味起泡酒*6</h4>
@@ -374,7 +405,7 @@
 								<a href="#" id = "shoping">立即购买</a>
 							</a>
 						</li>
-						<li id = "leli">
+						<li class = "leli">
 							<a href="#">
 								<img src="../img/index/1545042204205.jpg">
 								<h4>孟德仁《素肌》手錾铜壶</h4>
@@ -384,7 +415,7 @@
 							</a>
 						</li>
 					</ul>	
-				</div>		
+				</div>	
 			</div>			
 			<div class = "quick">
 				<h2>快捷入口</h2>
